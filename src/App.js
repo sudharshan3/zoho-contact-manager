@@ -1,14 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-import AppHeader from './components/AppHeader';
-import ContactPage from './Pages/Contacts';
+import logo from "./logo.svg";
+import "./App.css";
+import AppHeader from "./components/AppHeader";
+import ContactPage from "./Pages/Contacts";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+import React from "react";
+
 
 function App() {
   return (
-    <div className="App">
-    <AppHeader/>
-    <ContactPage/>
-    </div>
+    <Router>
+    <Routes>
+    <Route path="/" element={<Navigate to ="/contacts" />}/>
+
+
+          <Route exact path="/contacts" element={<ContactPage />} />
+  
+    </Routes>
+      </Router>
   );
 }
 
