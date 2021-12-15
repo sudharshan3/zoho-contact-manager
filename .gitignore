@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.docz
+.vscode
+.prettierrc
+.env
+
+
+/react-shell-scripts
