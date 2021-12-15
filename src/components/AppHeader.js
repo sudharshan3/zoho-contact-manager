@@ -8,9 +8,9 @@ const AppHeader = (props) => {
     <React.Fragment>
       <div className="topheader">
         <Container>
-          <div className="topheader-content">
+          <div className="topheader-content pt-3">
             <Link to="/">
-              <img src={logo} alt="logo" height={40} />
+              <img src={logo} alt="logo" height={35} />
             </Link>
 
             <img

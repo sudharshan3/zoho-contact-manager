@@ -36,36 +36,37 @@ const ContactDetails = (props) => {
 
   return (
     <>
-      <Col className=" g-md-2 position-relative">
+      <Col className=" g-md-2 position-relative h-100">
         {props.transition((style, item) =>
           item ? (
             <animated.div
               className="bg-white rounded shadow p-3 item h-100 position-relative"
               style={style}
             >
-              <div className="contact-details-container"></div>
+              <div className="contact-details-container "></div>
+              <div style={{height:'20%'}} className="mb-3">
               {childTransition((style, item) =>
                 item ? (
-                  <animated.div style={style}>
-                    <Row>
-                      <Col md={6}>
+                  <animated.div style={style} >
+                    <Row className="h-100">
+                      <Col md={6} className="h-100">
                         <img
                           className="avatar pb-2  rounded-circle"
                           src={props.data.avatar?props.data.avatar:defaultavatar}
                         />
                         <div>
-                          <h3 className="mb-0 mt-2">
-                            {" "}
+                          <h4 className="mb-0">
+                       
                             <strong>{props.data.contact_name}</strong>{" "}
-                          </h3>
-                          <small>{props.data.email}</small>
+                          </h4>
+                         
                         </div>
                       </Col>
-                      <Col md={6} className="text-end mt-auto">
-                        <Button variant="success" className="me-2">
+                      <Col md={6} className="text-end my-auto">
+                        <Button variant="success" className="me-2" size='sm'>
                           <Edit /> Edit
                         </Button>
-                        <Button variant="danger" className="me-2">
+                        <Button variant="danger" className="me-5" size='sm'>
                           <Trash /> Delete
                         </Button>
                       </Col>
@@ -75,9 +76,11 @@ const ContactDetails = (props) => {
                   ""
                 )
               )}
-
-<Tab.Container id="left-tabs-example" defaultActiveKey="first" >
-  <Row className="mt-3">
+              </div>
+         
+              <Row style={{height:'80%',overflow:'hidden'}}>
+              <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
+  <Row className=" h-100">
     <Col sm={12}>
       <Nav fill  variant="pills" className="flex-row">
         <Nav.Item>
@@ -91,8 +94,8 @@ const ContactDetails = (props) => {
         </Nav.Item>
       </Nav>
     </Col>
-    <Col sm={12}>
-      <Tab.Content className="viewtab p-1" >
+    <Col sm={12} className="h-100">
+      <Tab.Content className="viewtab p-1 h-100" >
         <Tab.Pane eventKey="first">
    <ContactTab data={props.data} />
         </Tab.Pane>
@@ -106,6 +109,9 @@ const ContactDetails = (props) => {
     </Col>
   </Row>
 </Tab.Container>
+              </Row>
+
+
            
 
               <button

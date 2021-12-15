@@ -19,7 +19,6 @@ body {
 }
 
 .topheader-content {
-  padding-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,6 +29,15 @@ body {
   width: 5rem;
   height: 5rem;
   object-fit: cover;
+  
+}
+@media screen and (max-width: 1200px) {
+  .avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    
+  }
   
 }
 .avatar-sm {
@@ -74,6 +82,7 @@ p {
   padding: 0 0.5rem;
   text-align: left;
   vertical-align: middle;
+  overflow: hidden;
 }
 tr {
   border-radius: 10px;
@@ -135,7 +144,7 @@ tr:hover {
 } */
 
 .react-bootstrap-table {
-  height: 70vh;
+  height: 85%;
   overflow-y: scroll;
 }
 
@@ -194,12 +203,12 @@ tr:hover {
 
 .close-btn{
   border-radius: 50%;
-  color: rgb(82, 82, 82);
+  color: rgb(10, 10, 10);
   position: absolute;
-  margin: 1rem 2rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 1rem;
+  margin: 1rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
   top: 0;
   right: 0;
   border: 0;
@@ -269,5 +278,5 @@ tr:hover {
 .viewtab{
 overflow-y: scroll;
 overflow-x: hidden;
-  height: 55vh;
+
 }

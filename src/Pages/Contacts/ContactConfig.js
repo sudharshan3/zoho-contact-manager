@@ -137,20 +137,20 @@ const ContactConfig = () => {
   return (
     <React.Fragment>
       <Row className="gx-5 h-100 mt-3">
-        <Col className="g-md-2 position-relative" lg={layout ? 4 : 12}>
+        <Col className="g-md-2 position-relative h-100" lg={layout ? 4 : 12}>
           <Spring
             from={{ transform: "translateY(100%)", opacity: 0 }}
             to={{ transform: "translateY(0%)", opacity: 1 }}
           >
             {(props) => (
-              <animated.div style={props} className={"h-100"}>
+              <animated.div style={props} className="h-100">
                 <div className="bg-white rounded shadow pt-4 px-3 pb-2 h-100">
                   <Button className="addcontactbtn">
                     <Plus />
                   </Button>
                   {contactListData.contacts && contactListData.contacts.length > 0 && (
-                    <Row className="mt-2">
-                      <Col md={12}>
+                    <Row className="mt-2  h-100">
+                      <Col md={12} className=" h-100">
                         <ToolkitProvider
                           keyField="contact_id"
                           data={contactListData.contacts}
@@ -159,8 +159,8 @@ const ContactConfig = () => {
                           search
                         >
                           {(props) => (
-                            <div>
-                              <Row className="mb-2">
+                            <div className="h-100">
+                              <Row className="mb-2 h-20">
                                 <Col md={6} className="text-start">
                                   <h3 className="mb-0">Contacts</h3>
                                 </Col>
@@ -186,7 +186,7 @@ const ContactConfig = () => {
                               )}
 
                               <BootstrapTable
-                                className="text-start"
+                                className="text-start "
                                 {...props.baseProps}
                                 keyField="contact_id"
                                 bordered={false}

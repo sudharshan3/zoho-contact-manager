@@ -247,7 +247,7 @@ const ContactTab = (props) => {
                 <small className="text-muted">Type</small>
                 <h6 className="text-dark">{props.data.contact_type}</h6>
               </Col>
-              <Col md={6} lg={4}>
+              <Col md={6} lg={4} className='mb-5'>
                 <small className="text-muted">Status</small>
                 <h6>
                   {props.data.status ? (

@@ -18,9 +18,9 @@ createServer({
       "/contacts/list",
       () => {
         return {
-          contacts: [
+          contacts: 
             fulldata
-          ],
+          ,
         }
       },
       { timing: 1000 }
