@@ -3,7 +3,7 @@ import "./App.css";
 import AppHeader from "./components/AppHeader";
 import ContactPage from "./Pages/Contacts";
 import {
-  BrowserRouter as Router,
+  HashRouter  as Router,
   Navigate,
   Routes,
   Switch,

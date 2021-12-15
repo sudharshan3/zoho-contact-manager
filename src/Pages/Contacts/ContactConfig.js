@@ -112,17 +112,17 @@ const ContactConfig = () => {
   ];
   return (
     <React.Fragment>
-      <Row style={{ height: "100%" }} className="gx-5">
+      <Row  className="gx-5 h-100">
         <Col className="g-md-2 position-relative" lg={layout ? 4 : 12}>
           <Spring
             from={{ transform: "translateY(100%)", opacity: 0 }}
             to={{ transform: "translateY(0%)", opacity: 1 }}
           >
             {(props) => (
-              <animated.div style={props}>
+              <animated.div style={props} className={'h-100'}>
                 <div
-                  className="bg-white rounded shadow-sm pt-4 px-3 pb-2"
-                  style={{ height: "100%" }}
+                  className="bg-white rounded shadow pt-4 px-3 pb-2 h-100"
+                  
                 >
                   <Button className="addcontactbtn">
                     <Plus />

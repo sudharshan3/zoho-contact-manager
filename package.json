@@ -52,6 +52,5 @@
   },
   "devDependencies": {
     "gh-pages-deploy": "^0.5.1"
-  },
-  "homepage": "https://sudharshan3.github.io/zoho-contact-manager/"
+  }
 }

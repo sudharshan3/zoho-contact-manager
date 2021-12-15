@@ -50,11 +50,12 @@ body {
 .centered-content {
   margin: auto;
   position: absolute;
-  top: 3rem;
+  margin-top: 6rem;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80vh;
+  height: 85vh;
 }
 .rounded {
   border-radius: 0.8rem !important;
