@@ -25,16 +25,10 @@ body {
   align-items: center;
   flex-direction: row;
 }
-.item{
 
-  
-}
 .avatar {
   width: 5rem;
   height: 5rem;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
   object-fit: cover;
   
 }
@@ -55,7 +49,7 @@ body {
 .centered-content {
   margin: auto;
   position: absolute;
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   top: 0;
   bottom: 0;
   left: 0;
@@ -145,16 +139,16 @@ tr:hover {
   overflow-y: scroll;
 }
 
-.react-bootstrap-table::-webkit-scrollbar {
+.react-bootstrap-table::-webkit-scrollbar,.viewtab::-webkit-scrollbar {
   width: 4px;
   background-color: #f5f5f5;
 }
 
-.react-bootstrap-table::-webkit-scrollbar-track {
+.react-bootstrap-table::-webkit-scrollbar-track,.viewtab::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(78, 78, 78, 0.3);
 }
 
-.react-bootstrap-table::-webkit-scrollbar-thumb {
+.react-bootstrap-table::-webkit-scrollbar-thumb ,.viewtab::-webkit-scrollbar-thumb{
   background-color: rgb(88, 88, 88);
   /* outline: 1px solid slategrey; */
 }
@@ -254,4 +248,26 @@ tr:hover {
 .card:hover{
   border: 0;
   box-shadow: 0 0 12px #4e4e4e38;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background: linear-gradient(to right, #160891, #0b0353);
+  border-radius: 6px;
+}
+
+.nav-fill{
+  background: #1608910e;
+  padding:3px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.nav-link{
+  color: #160891;
+}
+
+.viewtab{
+overflow-y: scroll;
+overflow-x: hidden;
+  height: 55vh;
 }

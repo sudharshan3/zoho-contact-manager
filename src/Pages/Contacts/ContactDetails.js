@@ -1,7 +1,9 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Card, Col, Row } from "react-bootstrap";
+import { Badge, Button, Card, Col, Nav, Row, Tab } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
+import defaultavatar from '../../assets/images/avatar-blue.png';
+import ContactTab from "./ContactTab";
 import {
   ChevronRight,
   Crosshair,
@@ -12,6 +14,7 @@ import {
   X,
 } from "react-feather";
 import { animated, useTransition } from "react-spring";
+
 const ContactDetails = (props) => {
   const [loop, setLoop] = useState(0);
   const childTransition = useTransition(props.change, {
@@ -47,8 +50,8 @@ const ContactDetails = (props) => {
                     <Row>
                       <Col md={6}>
                         <img
-                          className="avatar pb-2 shadow-sm border-light"
-                          src={props.data.avatar}
+                          className="avatar pb-2  rounded-circle"
+                          src={props.data.avatar?props.data.avatar:defaultavatar}
                         />
                         <div>
                           <h3 className="mb-0 mt-2">
@@ -73,48 +76,37 @@ const ContactDetails = (props) => {
                 )
               )}
 
-              <Row className="mt-2">
-                <Col md={8}>
-                  <Card className="p-3 rounded ">
-                    <h5 className="text-primary mb-1 ">
-                      <b>Contact Details</b>
-                    </h5>
-
-                    <Row>
-                      <Col md={6}>
-                        <small className="text-muted">Contact Name</small>
-                        <h6 className="text-dark">{props.data.contact_name}</h6>
-                      </Col>
-                      <Col md={6}>
-                        <small className="text-muted">Company Name</small>
-                        <h6 className="text-dark">{props.data.company_name}</h6>
-                      </Col>
-                      <Col md={6}>
-                        <small className="text-muted">Email Address</small>
-                        <h6 className="text-dark">{props.data.email}</h6>
-                      </Col>
-                      <Col md={6}>
-                        <small className="text-muted">Phone</small>
-                        <h6 className="text-dark">{props.data.phone}</h6>
-                      </Col>
-                      <Col md={6}>
-                        <small className="text-muted">Type</small>
-                        <h6 className="text-dark">{props.data.contact_type}</h6>
-                      </Col>
-                      <Col md={6}>
-                        <small className="text-muted">Status</small>
-                        <h6>
-                          {props.data.status ? (
-                            <Badge bg="success">Active</Badge>
-                          ) : (
-                            <Badge bg="danger">Inactive</Badge>
-                          )}
-                        </h6>
-                      </Col>
-                    </Row>
-                  </Card>
-                </Col>
-              </Row>
+<Tab.Container id="left-tabs-example" defaultActiveKey="first" >
+  <Row className="mt-3">
+    <Col sm={12}>
+      <Nav fill  variant="pills" className="flex-row">
+        <Nav.Item>
+          <Nav.Link eventKey="first">General Details</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="second">Payment Details</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="third">Contact Persons</Nav.Link>
+        </Nav.Item>
+      </Nav>
+    </Col>
+    <Col sm={12}>
+      <Tab.Content className="viewtab p-1" >
+        <Tab.Pane eventKey="first">
+   <ContactTab data={props.data} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="second">
+        "second"
+        </Tab.Pane>
+        <Tab.Pane eventKey="third">
+        "third"
+        </Tab.Pane>
+      </Tab.Content>
+    </Col>
+  </Row>
+</Tab.Container>
+           
 
               <button
                 className="btn-sm close-btn  btn-outline-secondary"

@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages-deploy": "^0.5.1"
+    "gh-pages-deploy": "^0.5.1",
+    "miragejs": "^0.1.43"
   }
 }
