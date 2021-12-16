@@ -14,6 +14,8 @@ import {
   X,
 } from "react-feather";
 import { animated, useTransition } from "react-spring";
+import PaymentTab from "./PaymentTab";
+import ContactPersons from "./ContactPersons";
 
 const ContactDetails = (props) => {
   const [loop, setLoop] = useState(0);
@@ -37,6 +39,7 @@ const ContactDetails = (props) => {
   return (
     <>
       <Col className=" g-md-2 position-relative h-100">
+        
         {props.transition((style, item) =>
           item ? (
             <animated.div
@@ -63,11 +66,11 @@ const ContactDetails = (props) => {
                         </div>
                       </Col>
                       <Col md={6} className="text-end my-auto">
-                        <Button variant="success" className="me-2" size='sm'>
-                          <Edit /> Edit
+                        <Button variant="success" className=" rounded-circle p-3 me-2" size='sm'>
+                          <Edit /> 
                         </Button>
-                        <Button variant="danger" className="me-5" size='sm'>
-                          <Trash /> Delete
+                        <Button variant="danger" className=" rounded-circle p-3 me-5" size='sm'>
+                          <Trash /> 
                         </Button>
                       </Col>
                     </Row>
@@ -86,7 +89,9 @@ const ContactDetails = (props) => {
         <Nav.Item>
           <Nav.Link eventKey="first">General Details</Nav.Link>
         </Nav.Item>
+    
         <Nav.Item>
+          
           <Nav.Link eventKey="second">Payment Details</Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -100,10 +105,10 @@ const ContactDetails = (props) => {
    <ContactTab data={props.data} />
         </Tab.Pane>
         <Tab.Pane eventKey="second">
-        "second"
+        <PaymentTab data={props.data} />
         </Tab.Pane>
         <Tab.Pane eventKey="third">
-        "third"
+        <ContactPersons data={props.data} />
         </Tab.Pane>
       </Tab.Content>
     </Col>

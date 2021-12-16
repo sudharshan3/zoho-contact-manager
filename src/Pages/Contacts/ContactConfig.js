@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Col, Row } from "react-bootstrap";
+import { Badge, Button, Col, Container, Form, FormControl, Nav, Navbar, NavDropdown, Offcanvas, Row } from "react-bootstrap";
 import { useSpring, animated, useTransition, Spring } from "react-spring";
 import { ChevronLeft, ChevronRight, Plus } from "react-feather";
 import { ContactsData } from "./Data";
@@ -136,8 +136,9 @@ const ContactConfig = () => {
 
   return (
     <React.Fragment>
+    
       <Row className="gx-5 h-100 mt-3">
-        <Col className="g-md-2 position-relative h-100" lg={layout ? 4 : 12}>
+        <Col className="g-md-2 position-relative h-100 d-none d-md-block" lg={layout ? 4 : 12}>
           <Spring
             from={{ transform: "translateY(100%)", opacity: 0 }}
             to={{ transform: "translateY(0%)", opacity: 1 }}
@@ -213,6 +214,8 @@ const ContactConfig = () => {
           setChange={setChange}
           change={change}
         />
+
+      
       </Row>
     </React.Fragment>
   );

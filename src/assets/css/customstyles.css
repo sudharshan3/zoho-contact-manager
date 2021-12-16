@@ -11,11 +11,11 @@ body {
   top: 0;
   height: 30vh;
   width: 100%;
-  background-image: url('../images/contactbg.png');
+  background-image: url('../images/darkbluebg.jpg');
   background-position: center;
   background-size: cover;
   background-blend-mode: multiply;
-  background-color: rgba(14, 4, 82, 0.76);
+  background-color: rgba(14, 4, 82, 0.877);
 }
 
 .topheader-content {
@@ -96,11 +96,11 @@ tr td:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-tr td:nth-child(2) {
-    
+tr td:nth-child(2) {    
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
 tr:hover {
     background: linear-gradient(to right, #160891, #0b0353);
     cursor: pointer;
@@ -154,11 +154,11 @@ tr:hover {
 }
 
 .react-bootstrap-table::-webkit-scrollbar-track,.viewtab::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(78, 78, 78, 0.3);
+  box-shadow: inset 0 0 6px rgba(78, 78, 78, 0);
 }
 
 .react-bootstrap-table::-webkit-scrollbar-thumb ,.viewtab::-webkit-scrollbar-thumb{
-  background-color: rgb(88, 88, 88);
+  background-color: rgba(54, 54, 54, 0.377);
   /* outline: 1px solid slategrey; */
 }
 .selection-cell,
@@ -167,7 +167,7 @@ tr:hover {
 }
 
 .contact-details-container{
-  background-image: url('../images/contactbg.png');
+  background-image: url('../images/darkbluebg.jpg');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -249,6 +249,22 @@ tr:hover {
   border: 0;
   padding: .5rem 1rem;
   border-radius: 6px;
+}
+.bg-primary{
+  background: linear-gradient(to right, #160891, #0b0353);
+  
+}
+.bg-success{
+  background:linear-gradient(to right, #19a855, #0b7537);
+  
+}
+.bg-info{
+  background:linear-gradient(to right, #4ebfe2, #3597b4);
+  
+}
+.bg-danger{
+  background:linear-gradient(to right, #ff4b2b, #f11649);
+
 }
 .card{
   border: 0;
