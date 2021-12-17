@@ -26,6 +26,8 @@ class ContactAddEditModal extends React.Component {
   }
 
   state = {
+
+    avatar: null,
     validated1: false,
     validated2: false,
     validated3: false,
@@ -115,7 +117,6 @@ class ContactAddEditModal extends React.Component {
         outstanding_receivable_amount: null,
         unused_credits_receivable_amount: null,
         contact_persons: [],
-
         b_attention: null,
         b_address: null,
         b_street2: null,
@@ -143,13 +144,65 @@ class ContactAddEditModal extends React.Component {
         cp_email: null,
         cp_phone: null,
       });
+
+      if (this.props.data !== null) {
+        this.setState({
+          moveNext: false,
+          validated1: false,
+          validated2: false,
+          validated3: false,
+          validated4: false,
+          avatar: this.props.data.avatar,
+          Taxable: this.props.data.is_taxable,
+          formData: null,
+          contact_name: this.props.data.contact_name,
+          company_name: this.props.data.company_name,
+          email: this.props.data.email,
+          mobile: this.props.data.mobile,
+          tax_id: this.props.data.tax_id,
+          tax_name: this.props.data.tax_name,
+          tax_percentage: this.props.data.tax_percentage,
+          place_of_contact: this.props.data.place_of_contact,
+          gst_no: this.props.data.gst_no,
+          gst_treatment: this.props.data.gst_treatment,
+          is_linked_with_zohocrm: this.props.data.is_linked_with_zohocrm,
+          website: this.props.data.website,
+          payment_terms: this.props.data.payment_terms,
+          payment_terms_label: this.props.data.payment_terms_label,
+          contact_persons: this.props.data.contact_persons,
+          b_attention: this.props.data.billing_address.attention,
+          b_address: this.props.data.billing_address.address,
+          b_street2: this.props.data.billing_address.street2,
+          b_state_code: this.props.data.billing_address.state_code,
+          b_city: this.props.data.billing_address.city,
+          b_state: this.props.data.billing_address.state,
+          b_zip: this.props.data.billing_address.zip,
+          b_country: this.props.data.billing_address.country,
+          b_fax: this.props.data.billing_address.fax,
+          b_phone: this.props.data.billing_address.phone,
+          s_attention: this.props.data.shipping_address.attention,
+          s_address: this.props.data.shipping_address.address,
+          s_street2: this.props.data.shipping_address.street2,
+          s_state_code: this.props.data.shipping_address.state_code,
+          s_city: this.props.data.shipping_address.city,
+          s_state: this.props.data.shipping_address.state,
+          s_zip: this.props.data.shipping_address.zip,
+          s_country: this.props.data.shipping_address.country,
+          s_fax: this.props.data.shipping_address.fax,
+          s_phone: this.props.data.shipping_address.phone,
+      
+  
+        });
+      }
     }
   };
 
   addContactData = () => {
     let data = {
       contact_id: Math.floor(Math.random() * 1000000),
-      avatar: "https://i.pravatar.cc/150?img="+ Math.floor( Math.random() * 10 ) + 1,
+      avatar:
+        "https://i.pravatar.cc/150?img=" +
+        Math.floor(Math.random() * (9 - 1) + 1),
       contact_name: this.state.contact_name,
       company_name: this.state.company_name,
       email: this.state.email,
@@ -240,6 +293,95 @@ class ContactAddEditModal extends React.Component {
     }
     this.getContactAdd(data);
   };
+  updateContactData = () => {
+    let data = {
+     
+      contact_name: this.state.contact_name,
+      company_name: this.state.company_name,
+      email: this.state.email,
+      mobile: this.state.mobile,
+      is_taxable: this.state.Taxable,
+      tax_id: this.state.tax_id,
+      tax_name: this.state.tax_name,
+      tax_authority_id: Math.floor(Math.random() * 1000000),
+      tax_exemption_id: Math.floor(Math.random() * 1000000),
+      tax_percentage: this.state.tax_percentage,
+      place_of_contact: this.state.place_of_contact,
+      gst_no: this.state.gst_no,
+      primary_contact_id: Math.floor(Math.random() * 1000000),
+      currency_id: Math.floor(Math.random() * 1000000),
+      gst_treatment: this.state.gst_treatment,
+      is_linked_with_zohocrm: this.state.is_linked_with_zohocrm,
+      website: this.state.website,
+      currency_code: "USD",
+      currency_symbol: "$",
+      payment_terms: this.state.payment_terms,
+      payment_terms_label: this.state.payment_terms_label,
+      currency_code: this.state.currency_code,
+      status: "active",
+      facebook: this.state.facebook,
+      twitter: this.state.twitter,
+      billing_address: {
+        attention: this.state.b_attention,
+        address: this.state.b_address,
+        street2: this.state.b_street2,
+        state_code: this.state.b_state_code,
+        city: this.state.b_city,
+        state: this.state.b_state,
+        zip: this.state.b_zip,
+        country: this.state.b_country,
+        fax: this.state.b_fax,
+        phone: this.state.b_phone,
+      },
+      default_templates: {
+        invoice_template_id: Math.floor(Math.random() * 1000000),
+        invoice_template_name: "Custom Classic",
+        estimate_template_id: Math.floor(Math.random() * 1000000),
+        estimate_template_name: "Service - Professional",
+        creditnote_template_id: Math.floor(Math.random() * 1000000),
+        creditnote_template_name: "Fixed Cost - Professional",
+        invoice_email_template_id: Math.floor(Math.random() * 1000000),
+        invoice_email_template_name: "Custom Invoice Notification",
+        estimate_email_template_id: Math.floor(Math.random() * 1000000),
+        estimate_email_template_name: "Custom Estimate Notification",
+        creditnote_email_template_id: Math.floor(Math.random() * 1000000),
+        creditnote_email_template_name: "Custom Credit Note Notification",
+      },
+      notes: "Payment option : Through check",
+      created_time: new Date().toLocaleString(),
+      last_modified_time: new Date().toLocaleString(),
+
+      contact_persons: this.state.contact_persons,
+    };
+    if (this.state.samebilling) {
+      data.shipping_address = {
+        attention: this.state.b_attention,
+        address: this.state.b_address,
+        street2: this.state.b_street2,
+        state_code: this.state.b_state_code,
+        city: this.state.b_city,
+        state: this.state.b_state,
+        zip: this.state.b_zip,
+        country: this.state.b_country,
+        fax: this.state.b_fax,
+        phone: this.state.b_phone,
+      };
+    } else {
+      data.shipping_address = {
+        attention: this.state.s_attention,
+        address: this.state.s_address,
+        street2: this.state.s_street2,
+        state_code: this.state.s_state_code,
+        city: this.state.s_city,
+        state: this.state.s_state,
+        zip: this.state.s_zip,
+        country: this.state.s_country,
+        fax: this.state.s_fax,
+        phone: this.state.s_phone,
+      };
+    }
+    this.getContactUpdate(data);
+  }
   getContactAdd = async (data) => {
     try {
       const res = await fetch("/api/contacts/add", {
@@ -247,11 +389,18 @@ class ContactAddEditModal extends React.Component {
         body: JSON.stringify(data),
       });
       const json = await res.json();
-   
-      // this.props.setContactListData([
-      //   ...this.props.contactListData.contacts,
-      //   json.contact,
-      // ]);
+      this.toggleModal();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  getContactUpdate = async (data) => {
+    try {
+      const res = await fetch("/api/contacts/update/"+this.props.data.contact_id, {
+        method: "PUT",
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
       this.toggleModal();
     } catch (e) {
       console.log(e);
@@ -607,12 +756,6 @@ class ContactAddEditModal extends React.Component {
                     </Row>
 
                     <Modal.Footer>
-                      <Button
-                        variant="dark"
-                        onClick={() => this.stepper.previous()}
-                      >
-                        Previous
-                      </Button>
                       <Button type="submit" variant="primary">
                         Next
                       </Button>
@@ -1373,13 +1516,23 @@ class ContactAddEditModal extends React.Component {
                       >
                         Previous
                       </Button>
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        onClick={() => this.addContactData()}
-                      >
-                        Submit
-                      </Button>
+                      {this.props.data === null ? (
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          onClick={() => this.addContactData()}
+                        >
+                          Submit
+                        </Button>
+                      ) : (
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          onClick={() => this.updateContactData()}
+                        >
+                          update Contact
+                        </Button>
+                      )}
                     </Modal.Footer>
                   </Form>
                 </div>

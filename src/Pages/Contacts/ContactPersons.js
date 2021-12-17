@@ -5,6 +5,7 @@ import {
   CreditCard,
   Facebook,
   Link,
+  Mail,
   Map,
   MapPin,
   Phone,
@@ -83,18 +84,36 @@ const ContactPersons = (props) => {
     <>
    
       <Row className="mt-2 mb-5">
-        <Col md={12}>
-       <BootstrapTable
-       className='p-3'
-       columns={columns}
-       data={props.data.contact_persons}
-   
-       selectRow={selectRow}
-       bordered
-        keyField="id">
+      
+          {props.data.contact_persons.map((item,index)=>{
+            return(
+              <Col md={6}>
+              <div className="p-3 rounded bg-light">
+                <h6 className="text-primary">
+              
+                  <strong>{item.salutation} {item.first_name} {item.last_name}</strong>
+                </h6>
 
-        </BootstrapTable>
-        </Col>
+             
+                <p className="mt-2">
+                  <Mail className="text-muterd me-2" size={15} />
+                  Email: {item.email}
+                </p>
+                <p className="mt-2">
+                  <Phone className="text-muterd me-2" size={15} />
+                  Phone: {item.phone}
+                </p>
+               
+
+               
+
+        
+              </div>
+            </Col>
+            )
+          })}
+    
+ 
       </Row>
     </>
   );

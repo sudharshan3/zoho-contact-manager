@@ -8,41 +8,53 @@ if(!localStorage.getItem("contacts") ){
 
 createServer({
   routes() {
-    this.namespace = "api"
 
-    // Responding to a POST request
+    this.namespace = "api"
     this.post("/contacts/add", (schema, request) => {
       let attrs = JSON.parse(request.requestBody)
       let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
-      console.log(contacts)
       contacts.push(attrs)
       localStorage.setItem('contacts', JSON.stringify(contacts));
-      console.log(contacts,'server.........')
+    
+      return { contact: attrs }
+    })
+    this.namespace = "api"
+    this.put("/contacts/update/:id", (schema, request) => {
+      let id = request.params.id
+      let attrs = JSON.parse(request.requestBody)
+      let contactscopy =   JSON.parse(localStorage.getItem("contacts") || "[]");
+      let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
+      const index = contacts.findIndex(m=>m.contact_id===id)
+
+      contactscopy[index] = attrs
+    
+    
+      localStorage.setItem('contacts', JSON.stringify(contactscopy));
+    
       return { contact: attrs }
     })
 
-    // Using the `timing` option to slow down the response
-    this.get(
-      "/contacts/list",
-      () => {
-        let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
-      
-        console.log(contacts,'server........')
-        return {
 
-          contacts
-          
+    this.get(
+      "/contacts/list",() => {
+        let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");      
+        return {
+          contacts          
         }
       },
       { timing: 500 }
     )
 
-    // Using the `Response` class to return a 500
-    this.delete("/movies/1", () => {
-      let headers = {}
-      let data = { errors: ["Server did not respond"] }
 
-      return new Response(500, headers, data)
+    this.namespace = "api" 
+    this.delete("/contacts/delete/:id", ( schema,request) => {
+      let id = request.params.id
+      let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");  
+      contacts = contacts.filter(x => {
+        return x.contact_id != id;
+      })         
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      return contacts
     })
   },
 })

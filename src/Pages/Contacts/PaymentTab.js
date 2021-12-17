@@ -50,10 +50,11 @@ const PaymentTab = (props) => {
           </Row>
           <hr />
         </Col>
-      {props.data.is_taxable &&
-      (
+ 
+  
+        {props.data.is_taxable &&(
           <>
-            <Col md={6} lg={4}>
+           <Col md={6} lg={4}>
           <small className="text-muted">Tax ID</small>
           <h6 className="text-dark">{props.data.tax_id}</h6>
         </Col>
@@ -65,6 +66,10 @@ const PaymentTab = (props) => {
           <small className="text-muted">Tax Percentage</small>
           <h6 className="text-dark">{props.data.tax_percentage} %</h6>
         </Col>
+          </>
+
+        )}
+           
         <Col md={6} lg={4}>
           <small className="text-muted">Place of contact</small>
           <h6 className="text-dark">{props.data.place_of_contact}</h6>
@@ -116,9 +121,9 @@ const PaymentTab = (props) => {
           </a>
        
         </Col>
-          </>
-      )
-      }
+     
+     
+
     
       </Row>
     </Card>

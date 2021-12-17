@@ -22,6 +22,8 @@ import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.c
 import ContactDetails from "./ContactDetails";
 import SearchBar from "react-bootstrap-table2-toolkit/lib/src/search/SearchBar";
 import ContactAddEditModal from "./ContactAddEdit";
+import ContactDelete from "./ContactDelete";
+import emptystate from "../../assets/images/emptystate.svg";
 
 const ContactConfig = () => {
   const [layout, setLayout] = useState(false);
@@ -31,6 +33,9 @@ const ContactConfig = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
   const [toggleAddEditModal, setToggleAddEditModal] = useState(false);
+  const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
+  const [deleteData, setDeleteData] = useState(null);
+  const [editdata, setEditdata] = useState(null);
   const transition = useTransition(visible, {
     from: { transform: "translateX(100%)", opacity: 0 },
     enter: { transform: "translateX(0%)", opacity: 1 },
@@ -50,14 +55,29 @@ const ContactConfig = () => {
   }, [localStorage.getItem('contacts')]);
 
 
+  const edit = (data) => {
+    setShow(true)
+    setToggleAddEditModal(true)
+    setEditdata(data)
+  }
+
   const handleAddEditModal = () => {
     setShow(true)
     setToggleAddEditModal(true)
 
   }
+  const handleDeleteModal = (data) => {
+    setDeleteData(data)
+    setToggleDeleteModal(true)
+
+  }
   const closeAddEditModal=()=>{
     setToggleAddEditModal(false)
     setShow(false);
+    setEditdata(null)
+  }
+  const closeDeleteModal=()=>{
+    setToggleDeleteModal(false)
   }
   const selectRow = {
     mode: "radio",
@@ -205,15 +225,31 @@ const ContactConfig = () => {
                               )}
 
                               <BootstrapTable
+                                bootstrap4
                                 className="text-start "
                                 {...props.baseProps}
+                                wrapperClasses="table-responsive"
                                 keyField="contact_id"
                                 bordered={false}
                                 selectRow={selectRow}
+                                condensed
+                                noDataIndication={() => "There are no records to display"}
                               />
                             </div>
                           )}
                         </ToolkitProvider>
+                      </Col>
+                    </Row>
+                  )}
+                  {contactListData.contacts && contactListData.contacts.length === 0 && (
+                    <Row className="mt-2  h-100 text-center">
+                      <Col md={12} className=" h-100">
+<h3 className="display-4">Contact Manager</h3>
+<img src={emptystate} className="img-fluid mb-2" alt="emptystate" />
+<br/>
+<p>
+  Create your first contact by clicking on the <b>+</b> button.
+</p>
                       </Col>
                     </Row>
                   )}
@@ -224,6 +260,8 @@ const ContactConfig = () => {
         </Col>
 
         <ContactDetails
+        handleDeleteModal={handleDeleteModal}
+        edit={edit}
           data={data}
           layout={layout}
           setLayout={setLayout}
@@ -237,11 +275,23 @@ const ContactConfig = () => {
       </Row>
 {toggleAddEditModal&&
    <ContactAddEditModal
+   data={editdata}
    setContactListData={setContactListData}
    contactListData={contactListData}
    show={show}
    closeAddEditModal={closeAddEditModal}
    toggleAddEditModal={toggleAddEditModal}
+ />
+
+}
+{toggleDeleteModal&&
+   <ContactDelete
+   setVisible={setVisible}
+   data={deleteData}
+   setContactListData={setContactListData}
+   contactListData={contactListData}
+   closeDeleteModal={closeDeleteModal}
+   toggleDeleteModal={toggleDeleteModal}
  />
 
 }

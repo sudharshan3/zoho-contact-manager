@@ -66,10 +66,12 @@ const ContactDetails = (props) => {
                         </div>
                       </Col>
                       <Col md={6} className="text-end my-auto">
-                        <Button variant="success" className=" rounded-circle p-3 me-2" size='sm'>
+                        <Button onClick={()=>{props.edit(props.data)}}  
+                        variant="success" className=" rounded-circle p-3 me-2" size='sm'>
                           <Edit /> 
                         </Button>
-                        <Button variant="danger" className=" rounded-circle p-3 me-5" size='sm'>
+                        <Button onClick={()=>{props.handleDeleteModal(props.data)}} 
+                        variant="danger" className=" rounded-circle p-3 me-5" size='sm'>
                           <Trash /> 
                         </Button>
                       </Col>
