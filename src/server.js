@@ -1,6 +1,11 @@
 import { createServer, Response } from "miragejs"
-import fulldata from "./data.json"
+import {data} from "./data"
 import listdata from "./list.json"
+
+if(!localStorage.getItem("contacts") ){
+  let contactsset = localStorage.setItem('contacts', JSON.stringify(data));
+}
+
 createServer({
   routes() {
     this.namespace = "api"
@@ -8,22 +13,28 @@ createServer({
     // Responding to a POST request
     this.post("/contacts/add", (schema, request) => {
       let attrs = JSON.parse(request.requestBody)
-      attrs.contact_id = Math.floor(Math.random() * 100)
-
-      return { contacts: attrs }
+      let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
+      console.log(contacts)
+      contacts.push(attrs)
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      console.log(contacts,'server.........')
+      return { contact: attrs }
     })
 
     // Using the `timing` option to slow down the response
     this.get(
       "/contacts/list",
       () => {
+        let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
+      
+        console.log(contacts,'server........')
         return {
-          contacts: 
-            fulldata
-          ,
+
+          contacts
+          
         }
       },
-      { timing: 1000 }
+      { timing: 500 }
     )
 
     // Using the `Response` class to return a 500

@@ -21,18 +21,23 @@ import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
 import ContactDetails from "./ContactDetails";
 import SearchBar from "react-bootstrap-table2-toolkit/lib/src/search/SearchBar";
+import ContactAddEditModal from "./ContactAddEdit";
 
 const ContactConfig = () => {
   const [layout, setLayout] = useState(false);
   const [visible, setVisible] = useState(false);
   const [change, setChange] = useState(0);
   const [data, setData] = useState("");
+  const [modalShow, setModalShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [toggleAddEditModal, setToggleAddEditModal] = useState(false);
   const transition = useTransition(visible, {
     from: { transform: "translateX(100%)", opacity: 0 },
     enter: { transform: "translateX(0%)", opacity: 1 },
     leave: { transform: "translateX(100%)", opacity: 0 },
   });
   const [contactListData, setContactListData] = useState([]);
+
   useEffect(() => {
     fetch("/api/contacts/list")
       .then((res) => res.json())
@@ -42,7 +47,18 @@ const ContactConfig = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [localStorage.getItem('contacts')]);
+
+
+  const handleAddEditModal = () => {
+    setShow(true)
+    setToggleAddEditModal(true)
+
+  }
+  const closeAddEditModal=()=>{
+    setToggleAddEditModal(false)
+    setShow(false);
+  }
   const selectRow = {
     mode: "radio",
     clickToSelect: true,
@@ -59,6 +75,7 @@ const ContactConfig = () => {
     {
       dataField: "contact_id",
       text: "S.No",
+      headerStyle: {width:'8%'},
       hidden: layout ? true : false,
       sort: true,
       headerClasses: `${layout ? "d-none" : ""}`,
@@ -100,6 +117,7 @@ const ContactConfig = () => {
       dataField: "email",
       text: "Email ID",
       headerClasses: `${layout ? "d-none" : ""}`,
+      headerStyle: {width:'30%'},
       sort: true,
       hidden: layout ? true : false,
       formatter: (cell, row, rowIndex, formatExtraData) => (
@@ -146,7 +164,7 @@ const ContactConfig = () => {
             {(props) => (
               <animated.div style={props} className="h-100">
                 <div className="bg-white rounded shadow pt-4 px-3 pb-2 h-100">
-                  <Button className="addcontactbtn">
+                  <Button className="addcontactbtn" onClick={()=>handleAddEditModal()}>
                     <Plus />
                   </Button>
                   {contactListData.contacts && contactListData.contacts.length > 0 && (
@@ -217,6 +235,17 @@ const ContactConfig = () => {
 
       
       </Row>
+{toggleAddEditModal&&
+   <ContactAddEditModal
+   setContactListData={setContactListData}
+   contactListData={contactListData}
+   show={show}
+   closeAddEditModal={closeAddEditModal}
+   toggleAddEditModal={toggleAddEditModal}
+ />
+
+}
+   
     </React.Fragment>
   );
 };

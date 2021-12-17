@@ -1,4 +1,6 @@
-[{
+
+export const data = [
+    {
     "contact_id": 460000000026049,
     "avatar":"https://i.pravatar.cc/150?img=2",
     "contact_name": "Sudharshan",
