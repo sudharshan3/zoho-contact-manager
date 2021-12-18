@@ -275,6 +275,7 @@ const ContactConfig = () => {
       </Row>
 {toggleAddEditModal&&
    <ContactAddEditModal
+   setData={setData}
    data={editdata}
    setContactListData={setContactListData}
    contactListData={contactListData}

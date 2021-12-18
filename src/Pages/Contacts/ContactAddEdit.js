@@ -295,7 +295,12 @@ class ContactAddEditModal extends React.Component {
   };
   updateContactData = () => {
     let data = {
-     
+      contact_id:this.props.data.contact_id,
+      outstanding_receivable_amount: this.props.data.outstanding_receivable_amount,
+      outstanding_receivable_amount_bcy: this.props.data.outstanding_receivable_amount_bcy,
+      unused_credits_receivable_amount: this.props.data.unused_credits_receivable_amount,
+      unused_credits_receivable_amount_bcy: this.props.data.unused_credits_receivable_amount_bcy,
+      avatar:this.props.data.avatar,
       contact_name: this.state.contact_name,
       company_name: this.state.company_name,
       email: this.state.email,
@@ -401,6 +406,8 @@ class ContactAddEditModal extends React.Component {
         body: JSON.stringify(data),
       });
       const json = await res.json();
+    
+      this.props.setData(json.contact)
       this.toggleModal();
     } catch (e) {
       console.log(e);
@@ -417,7 +424,7 @@ class ContactAddEditModal extends React.Component {
     } else {
       this.stepper.next();
       this.setState({ moveNext: true });
-      this.setState({ validated1: false });
+      // this.setState({ validated1: false });
     }
 
     this.setState({ validated1: true });

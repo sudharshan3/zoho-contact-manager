@@ -190,6 +190,7 @@ export const data = [
 },
 {
     "contact_id": 460000000026063,
+    "avatar":"https://i.pravatar.cc/150?img=8",
     "contact_name": "Vignesh",
     "company_name": "V Keys CO",
     "has_transaction": true,

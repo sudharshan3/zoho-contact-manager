@@ -24,13 +24,9 @@ createServer({
       let attrs = JSON.parse(request.requestBody)
       let contactscopy =   JSON.parse(localStorage.getItem("contacts") || "[]");
       let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");
-      const index = contacts.findIndex(m=>m.contact_id===id)
-
-      contactscopy[index] = attrs
-    
-    
-      localStorage.setItem('contacts', JSON.stringify(contactscopy));
-    
+      const index = contacts.findIndex(m=>m.contact_id==id)
+      contactscopy[index] = attrs    
+      localStorage.setItem('contacts', JSON.stringify(contactscopy));    
       return { contact: attrs }
     })
 
