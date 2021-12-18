@@ -6,7 +6,7 @@ import profile from "../assets/images/sudharshan.JPG";
 const AppHeader = (props) => {
   return (
     <React.Fragment>
-      <div className="topheader">
+      <div className="topheader ">
         <Container>
           <div className="topheader-content pt-3">
             <Link to="/">

@@ -14,11 +14,12 @@ body {
   top: 0;
   height: 30vh;
   width: 100%;
-  background-image: url('../images/contactbg.png');
+  /* background-image: url('../images/darkbluebg.jpg');
   background-position: center;
   background-size: cover;
   background-blend-mode: multiply;
-  background-color: rgba(14, 4, 82, 0.877);
+  background-color: rgba(14, 4, 82, 0.877); */
+  background: linear-gradient(to right, #177bb9, #90c8eb);
 }
 
 .topheader-content {
@@ -170,7 +171,7 @@ tr:hover {
 }
 
 .contact-details-container{
-  background-image: url('../images/contactbg.png');
+  background-image: url('../images/darkbluebg.jpg');
   background-size: cover;
   background-position: center;
   position: absolute;
