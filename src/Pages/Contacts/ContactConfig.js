@@ -40,7 +40,6 @@ import emptystate from "../../assets/images/emptystate.svg";
 import { useNavigate } from "react-router";
 const ContactConfig = () => {
   let { id } = useParams();
-  let { add } = useSearchParams();
   const [layout, setLayout] = useState(false);
   const [visible, setVisible] = useState(false);
   const [change, setChange] = useState(0);
@@ -48,7 +47,7 @@ const ContactConfig = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const [toggleAddEditModal, setToggleAddEditModal] = useState(searchParams.get('add'));
+  const [toggleAddEditModal, setToggleAddEditModal] = useState(searchParams.get('add')||searchParams.get('edit'));
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [editdata, setEditdata] = useState(null);
@@ -58,7 +57,7 @@ const ContactConfig = () => {
     leave: { transform: "translateX(100%)", opacity: 0 },
   });
   const [contactListData, setContactListData] = useState([]);
-console.log(searchParams.get('add'))
+
 
 
   useEffect(() => {
@@ -75,23 +74,26 @@ console.log(searchParams.get('add'))
           });
 
           setData(initcontact[0]);
+          if (searchParams.get('edit')) {
+          
+            setEditdata(initcontact[0]);
+          }
+     
         }
+       
       })
       .catch((err) => {
         console.log(err);
       });
   }, [localStorage.getItem("contacts")]);
 
-  // useEffect(
-  //   ()=>{
-
-  //   },[id]
-  // )
+  
 
   const edit = (data) => {
     setShow(true);
     setToggleAddEditModal(true);
     setEditdata(data);
+    history(`?edit=true`)
   };
 
   const handleAddEditModal = () => {

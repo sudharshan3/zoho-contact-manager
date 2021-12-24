@@ -86,6 +86,7 @@ class ContactAddEditModal extends React.Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props.data,'component')
     this.stepper = new Stepper(document.querySelector("#stepper1"), {
       linear: false,
       animation: true,
@@ -196,6 +197,62 @@ class ContactAddEditModal extends React.Component {
       }
     }
   };
+  componentDidUpdate(prevState,prevProps){
+    if(this.props.data !==null){
+  
+      if(prevState.data&&prevState.data.email !== this.state.email){        
+          this.setState({
+            moveNext: false,
+            validated1: false,
+            validated2: false,
+            validated3: false,
+            validated4: false,
+            avatar: this.props.data.avatar,
+            Taxable: this.props.data.is_taxable,
+            formData: null,
+            contact_name: this.props.data.contact_name,
+            company_name: this.props.data.company_name,
+            email: this.props.data.email,
+            mobile: this.props.data.mobile,
+            tax_id: this.props.data.tax_id,
+            tax_name: this.props.data.tax_name,
+            tax_percentage: this.props.data.tax_percentage,
+            place_of_contact: this.props.data.place_of_contact,
+            gst_no: this.props.data.gst_no,
+            gst_treatment: this.props.data.gst_treatment,
+            is_linked_with_zohocrm: this.props.data.is_linked_with_zohocrm,
+            website: this.props.data.website,
+            payment_terms: this.props.data.payment_terms,
+            payment_terms_label: this.props.data.payment_terms_label,
+            contact_persons: this.props.data.contact_persons,
+            b_attention: this.props.data.billing_address.attention,
+            b_address: this.props.data.billing_address.address,
+            b_street2: this.props.data.billing_address.street2,
+            b_state_code: this.props.data.billing_address.state_code,
+            b_city: this.props.data.billing_address.city,
+            b_state: this.props.data.billing_address.state,
+            b_zip: this.props.data.billing_address.zip,
+            b_country: this.props.data.billing_address.country,
+            b_fax: this.props.data.billing_address.fax,
+            b_phone: this.props.data.billing_address.phone,
+            s_attention: this.props.data.shipping_address.attention,
+            s_address: this.props.data.shipping_address.address,
+            s_street2: this.props.data.shipping_address.street2,
+            s_state_code: this.props.data.shipping_address.state_code,
+            s_city: this.props.data.shipping_address.city,
+            s_state: this.props.data.shipping_address.state,
+            s_zip: this.props.data.shipping_address.zip,
+            s_country: this.props.data.shipping_address.country,
+            s_fax: this.props.data.shipping_address.fax,
+            s_phone: this.props.data.shipping_address.phone,
+        
+    
+          });
+        
+      }
+    }
+
+  }
 
   addContactData = () => {
     let data = {
@@ -510,6 +567,7 @@ class ContactAddEditModal extends React.Component {
   };
 
   render() {
+    console.log(this.props.data,"inside.............")
     const {
       moveNext,
       validated1,
@@ -580,7 +638,7 @@ class ContactAddEditModal extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add Contact
+           {this.props.data!==null ? "Edit Contact": "Add Contact"}
           </Modal.Title>
         </Modal.Header>
 
