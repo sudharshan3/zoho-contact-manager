@@ -1,7 +1,11 @@
 import React from "react"
 import { Button, Modal } from "react-bootstrap";
 import defaultavatar from '../../assets/images/avatar-blue.png';
+
+
+
 class ContactDelete extends React.Component {
+  
 
     toggleModal = () => {
         this.props.closeDeleteModal();
@@ -12,10 +16,16 @@ class ContactDelete extends React.Component {
             await fetch('/api/contacts/delete/'+this.props.data.contact_id,{method:'DELETE'})
             this.toggleModal()
             this.props.setVisible(false)
-            this.props.history.push({
-              pathname: `/`
+       window.location.href='/contacts'
+          // if(this.props.contactListData.contacts.length>0){
            
-          });
+          //   this.props.setData(this.props.contactListData.contacts[0]);
+          
+          // }else{
+          //   this.props.setData({});
+          // }
+          
+       
         }
         catch(err){
             console.log(err)

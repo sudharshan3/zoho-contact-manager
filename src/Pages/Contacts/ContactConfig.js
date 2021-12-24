@@ -51,6 +51,7 @@ const ContactConfig = () => {
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [deleteData, setDeleteData] = useState(null);
   const [editdata, setEditdata] = useState(null);
+
   const transition = useTransition(visible, {
     from: { transform: "translateX(100%)", opacity: 0 },
     enter: { transform: "translateX(0%)", opacity: 1 },
@@ -65,10 +66,11 @@ const ContactConfig = () => {
       .then((res) => res.json())
       .then((data) => {
         setContactListData(data);
-
+     
         if (id) {
           setLayout(true);
           setVisible(true);
+         
           const initcontact = data.contacts.filter((e) => {
             return e.contact_id == id;
           });
@@ -345,6 +347,9 @@ const ContactConfig = () => {
         <ContactDelete
           setVisible={setVisible}
           data={deleteData}
+          contactListData={contactListData}
+    
+            setData={setData}
           setContactListData={setContactListData}
           contactListData={contactListData}
           closeDeleteModal={closeDeleteModal}
