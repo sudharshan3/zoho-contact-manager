@@ -52,5 +52,25 @@ createServer({
       localStorage.setItem('contacts', JSON.stringify(contacts));
       return contacts
     })
+
+    this.namespace = "api" 
+    this.delete("/contacts/delete/:id/:cid", ( schema,request) => {
+      let id = request.params.id
+      let cid = request.params.cid
+      let contacts =   JSON.parse(localStorage.getItem("contacts") || "[]");  
+      let selectContact = contacts.filter(e=>e.contact_id == id)
+let Contactscontact = selectContact[0].contact_persons.filter(e=>{       
+ 
+  return e.phone!==cid}
+  )
+      selectContact[0].contact_persons=Contactscontact
+        console.log(selectContact)
+        const index = contacts.findIndex(m=>m.contact_id==id)
+        contacts[index] = selectContact[0] 
+     
+         
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      return selectContact[0]
+    })
   },
 })

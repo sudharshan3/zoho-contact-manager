@@ -263,6 +263,7 @@ const ContactConfig = () => {
         handleDeleteModal={handleDeleteModal}
         edit={edit}
           data={data}
+          setData={setData}
           layout={layout}
           setLayout={setLayout}
           setVisible={setVisible}

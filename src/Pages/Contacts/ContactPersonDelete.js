@@ -1,20 +1,23 @@
 import React from "react"
 import { Button, Modal } from "react-bootstrap";
 import defaultavatar from '../../assets/images/avatar-blue.png';
-class ContactDelete extends React.Component {
+class ContactPersonDelete extends React.Component {
 
     toggleModal = () => {
         this.props.closeDeleteModal();
       };
       DeleteContact=async()=>{
-          console.log(this.props.data.contact_id)
+          
         try{
-            await fetch('/api/contacts/delete/'+this.props.data.contact_id,{method:'DELETE'})
+            const res =await fetch('/api/contacts/delete/'+this.props.contactdetails.contact_id+'/'+this.props.data.phone,{method:'DELETE'})
+            const json = await res.json();    
+            console.log(json,'.........')
+            this.props.setAllcontactPerson(json.contact_persons)
+         this.props.setData(json)
             this.toggleModal()
             this.props.setVisible(false)
             this.props.history.push({
-              pathname: `/`
-           
+              pathname: `/`           
           });
         }
         catch(err){
@@ -40,15 +43,14 @@ class ContactDelete extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Delete Contact
+            Delete Contact Person
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="text-center">
             <p className="mb-3">Are you Sure to Delete this contact?</p>
-<img src={this.props.data.avatar?this.props.data.avatar:defaultavatar} className="avatar rounded-circle" />
 <h5>
-{this.props.data.contact_name} 
+{this.props.data.first_name} 
 </h5>
 
         </Modal.Body>
@@ -65,4 +67,4 @@ class ContactDelete extends React.Component {
   
 }
 
-export default ContactDelete
+export default ContactPersonDelete
