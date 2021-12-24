@@ -64,7 +64,7 @@ let Contactscontact = selectContact[0].contact_persons.filter(e=>{
   return e.phone!==cid}
   )
       selectContact[0].contact_persons=Contactscontact
-        console.log(selectContact)
+      
         const index = contacts.findIndex(m=>m.contact_id==id)
         contacts[index] = selectContact[0] 
      

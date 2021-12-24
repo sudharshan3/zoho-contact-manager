@@ -11,7 +11,7 @@ class ContactPersonDelete extends React.Component {
         try{
             const res =await fetch('/api/contacts/delete/'+this.props.contactdetails.contact_id+'/'+this.props.data.phone,{method:'DELETE'})
             const json = await res.json();    
-            console.log(json,'.........')
+          
             this.props.setAllcontactPerson(json.contact_persons)
          this.props.setData(json)
             this.toggleModal()
@@ -27,7 +27,7 @@ class ContactPersonDelete extends React.Component {
       }
 
     render(){
-      console.log(this.props.data)
+
         return (
            <>
              <Modal

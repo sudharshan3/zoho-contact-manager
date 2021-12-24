@@ -7,7 +7,7 @@ class ContactDelete extends React.Component {
         this.props.closeDeleteModal();
       };
       DeleteContact=async()=>{
-          console.log(this.props.data.contact_id)
+      
         try{
             await fetch('/api/contacts/delete/'+this.props.data.contact_id,{method:'DELETE'})
             this.toggleModal()
@@ -24,7 +24,7 @@ class ContactDelete extends React.Component {
       }
 
     render(){
-      console.log(this.props.data)
+
         return (
            <>
              <Modal

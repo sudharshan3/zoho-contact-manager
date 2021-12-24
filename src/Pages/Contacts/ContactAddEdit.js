@@ -86,7 +86,7 @@ class ContactAddEditModal extends React.Component {
   };
 
   componentDidMount = () => {
-    console.log(this.props.data,'component')
+
     this.stepper = new Stepper(document.querySelector("#stepper1"), {
       linear: false,
       animation: true,
@@ -445,18 +445,21 @@ class ContactAddEditModal extends React.Component {
     this.getContactUpdate(data);
   }
   getContactAdd = async (data) => {
+    this.props.closeAddEditModal();
     try {
       const res = await fetch("/api/contacts/add", {
         method: "POST",
         body: JSON.stringify(data),
       });
       const json = await res.json();
+      
       this.toggleModal();
     } catch (e) {
       console.log(e);
     }
   };
   getContactUpdate = async (data) => {
+    this.props.closeAddEditModal();
     try {
       const res = await fetch("/api/contacts/update/"+this.props.data.contact_id, {
         method: "PUT",
@@ -465,6 +468,7 @@ class ContactAddEditModal extends React.Component {
       const json = await res.json();
     
       this.props.setData(json.contact)
+   
       this.toggleModal();
     } catch (e) {
       console.log(e);
@@ -567,7 +571,7 @@ class ContactAddEditModal extends React.Component {
   };
 
   render() {
-    console.log(this.props.data,"inside.............")
+
     const {
       moveNext,
       validated1,
