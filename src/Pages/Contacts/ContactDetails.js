@@ -4,6 +4,8 @@ import { Badge, Button, Card, Col, Nav, Row, Tab } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
 import defaultavatar from "../../assets/images/avatar-blue.png";
 import ContactTab from "./ContactTab";
+import { Routes, Route, useParams ,useNavigate} from 'react-router-dom';
+
 import {
   ChevronRight,
   Crosshair,
@@ -19,12 +21,13 @@ import ContactPersons from "./ContactPersons";
 
 const ContactDetails = (props) => {
   const [loop, setLoop] = useState(0);
-  const childTransition = useTransition(props.change, {
+  let { id } = useParams();
+  const childTransition = useTransition(id, {
     from: { transform: "translateY(50%)", opacity: 0 },
     enter: { transform: "translateY(0%)", opacity: 1 },
     delay: 200,
   });
-
+let history= useNavigate()
   useEffect(() => {
     setTimeout(() => {
       props.setLayout(false);
@@ -34,6 +37,7 @@ const ContactDetails = (props) => {
   const changeVisibility = () => {
     props.setVisible(false);
     setLoop(!loop);
+    history('/')
   };
 
   return (

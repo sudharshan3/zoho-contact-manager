@@ -14,7 +14,9 @@ import {
 const PaymentTab = (props) => {
     return (
         <>
-        <Row className="mt-2">
+      {props.data&&(
+        <>
+          <Row className="mt-2">
           <Col md={6}>
         
       <div className="text-white text-center rounded p-3 bg-success d-flex flex-column justify-content-center">
@@ -131,6 +133,8 @@ const PaymentTab = (props) => {
     
         </Col>
       </Row>
+        </>
+      )}
       </>
     )
 }

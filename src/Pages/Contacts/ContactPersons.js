@@ -100,7 +100,7 @@ const ContactPersons = (props) => {
   return (
     <>
       <Row className="mt-2 mb-5">
-        {props.data.contact_persons.map((item, index) => {
+        {props.data&&props.data.contact_persons&& props.data.contact_persons.length > 0 && props.data.contact_persons.map((item, index) => {
           return (
             <Col md={6}>
               <div className="p-3 rounded bg-light d-flex justify-content-between align-items-center">

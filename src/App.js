@@ -21,6 +21,7 @@ function App() {
 
 
           <Route exact path="/contacts" element={<ContactPage />} />
+          <Route exact path="/contactdetails/:id" element={<ContactPage />} />
   
     </Routes>
       </Router>

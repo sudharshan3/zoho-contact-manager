@@ -16,7 +16,9 @@ import {
 const ContactTab = (props) => {
   return (
     <>
-      <Row className="mt-2">
+    {props.data &&(
+      <>
+         <Row className="mt-2">
         <Col md={12}>
           <Card className="p-3 rounded ">
             <Row>
@@ -94,106 +96,116 @@ const ContactTab = (props) => {
                 </Row>
                 <hr />
               </Col>
-              <Col md={6}>
-                <div className="p-3 rounded bg-light">
-                  <h6 className="text-primary">
-                
-                    <strong>Billing Address</strong>{" "}
-                  </h6>
+              {props.data&&props.data.billing_address && (
+                        <Col md={6}>
+                        <div className="p-3 rounded bg-light">
+                          <h6 className="text-primary">
+                        
+                            <strong>Billing Address</strong>{" "}
+                          </h6>
+        
+                          <p className="mt-2">
+                            <User className="text-muterd me-2" size={15} />
+                            {props.data.billing_address.attention}
+                          </p>
+                          <p className="mt-2">
+                            <Phone className="text-muterd me-2" size={15} />
+                            Phone: {props.data.billing_address.phone}
+                          </p>
+                          <p className="mt-2">
+                            <Printer className="text-muterd me-2" size={15} />
+                            Fax: {props.data.billing_address.fax}
+                          </p>
+        
+                          <p className="d-flex justify-content-start flex-row mt-2">
+                            <MapPin className="text-muterd me-2" size={15} />
+        
+                            <span className="d-flex justify-content-center flex-column">
+                              <span>
+                                {props.data.billing_address.address} -{" "}
+                                {props.data.billing_address.street2}
+                              </span>
+                              <span>
+                                <small>{props.data.billing_address.city} - </small>
+                                <small>{props.data.billing_address.state} - </small>
+                                <small>{props.data.billing_address.country}</small>
+                              </span>
+                            </span>
+                          </p>
+        
+                          {/* "attention": "Mr.John",
+                "address": "4900 Hopyard Rd, Suite 310",
+                "street2": "Suite 310",
+                "state_code": "CA",
+                "city": "Pleasanton",
+                "state": "CA",
+                "zip": 94588,
+                "country": "U.S.A",
+                "fax": 1234,
+                "phone": "1234" */}
+                        </div>
+                      </Col>
+              )}
+      {props.data&&
+        props.data.shipping_address&&(
+          <Col md={6}>
+          <div className="p-3 rounded bg-light">
+            <h6 className="text-primary">
+          
+              <strong>Shipping Address</strong>{" "}
+            </h6>
 
-                  <p className="mt-2">
-                    <User className="text-muterd me-2" size={15} />
-                    {props.data.billing_address.attention}
-                  </p>
-                  <p className="mt-2">
-                    <Phone className="text-muterd me-2" size={15} />
-                    Phone: {props.data.billing_address.phone}
-                  </p>
-                  <p className="mt-2">
-                    <Printer className="text-muterd me-2" size={15} />
-                    Fax: {props.data.billing_address.fax}
-                  </p>
+            <p className="mt-2">
+              <User className="text-muterd me-2" size={15} />
+              {props.data.shipping_address.attention}
+            </p>
+            <p className="mt-2">
+              <Phone className="text-muterd me-2" size={15} />
+              Phone: {props.data.shipping_address.phone}
+            </p>
+            <p className="mt-2">
+              <Printer className="text-muterd me-2" size={15} />
+              Fax: {props.data.shipping_address.fax}
+            </p>
 
-                  <p className="d-flex justify-content-start flex-row mt-2">
-                    <MapPin className="text-muterd me-2" size={15} />
+            <p className="d-flex justify-content-start flex-row mt-2">
+              <MapPin className="text-muterd me-2" size={15} />
 
-                    <span className="d-flex justify-content-center flex-column">
-                      <span>
-                        {props.data.billing_address.address} -{" "}
-                        {props.data.billing_address.street2}
-                      </span>
-                      <span>
-                        <small>{props.data.billing_address.city} - </small>
-                        <small>{props.data.billing_address.state} - </small>
-                        <small>{props.data.billing_address.country}</small>
-                      </span>
-                    </span>
-                  </p>
+              <span className="d-flex justify-content-center flex-column">
+                <span>
+                  {props.data.shipping_address.address} -{" "}
+                  {props.data.shipping_address.street2}
+                </span>
+                <span>
+                  <small>{props.data.shipping_address.city} - </small>
+                  <small>{props.data.shipping_address.state} - </small>
+                  <small>{props.data.shipping_address.country}</small>
+                </span>
+              </span>
+            </p>
 
-                  {/* "attention": "Mr.John",
-        "address": "4900 Hopyard Rd, Suite 310",
-        "street2": "Suite 310",
-        "state_code": "CA",
-        "city": "Pleasanton",
-        "state": "CA",
-        "zip": 94588,
-        "country": "U.S.A",
-        "fax": 1234,
-        "phone": "1234" */}
-                </div>
-              </Col>
-              <Col md={6}>
-                <div className="p-3 rounded bg-light">
-                  <h6 className="text-primary">
-                
-                    <strong>Shipping Address</strong>{" "}
-                  </h6>
-
-                  <p className="mt-2">
-                    <User className="text-muterd me-2" size={15} />
-                    {props.data.shipping_address.attention}
-                  </p>
-                  <p className="mt-2">
-                    <Phone className="text-muterd me-2" size={15} />
-                    Phone: {props.data.shipping_address.phone}
-                  </p>
-                  <p className="mt-2">
-                    <Printer className="text-muterd me-2" size={15} />
-                    Fax: {props.data.shipping_address.fax}
-                  </p>
-
-                  <p className="d-flex justify-content-start flex-row mt-2">
-                    <MapPin className="text-muterd me-2" size={15} />
-
-                    <span className="d-flex justify-content-center flex-column">
-                      <span>
-                        {props.data.shipping_address.address} -{" "}
-                        {props.data.shipping_address.street2}
-                      </span>
-                      <span>
-                        <small>{props.data.shipping_address.city} - </small>
-                        <small>{props.data.shipping_address.state} - </small>
-                        <small>{props.data.shipping_address.country}</small>
-                      </span>
-                    </span>
-                  </p>
-
-                  {/* "attention": "Mr.John",
-        "address": "4900 Hopyard Rd, Suite 310",
-        "street2": "Suite 310",
-        "state_code": "CA",
-        "city": "Pleasanton",
-        "state": "CA",
-        "zip": 94588,
-        "country": "U.S.A",
-        "fax": 1234,
-        "phone": "1234" */}
-                </div>
-              </Col>
+            {/* "attention": "Mr.John",
+  "address": "4900 Hopyard Rd, Suite 310",
+  "street2": "Suite 310",
+  "state_code": "CA",
+  "city": "Pleasanton",
+  "state": "CA",
+  "zip": 94588,
+  "country": "U.S.A",
+  "fax": 1234,
+  "phone": "1234" */}
+          </div>
+        </Col>
+        )
+      }
+         
             </Row>
           </Card>
         </Col>
       </Row>
+      </>
+    )}
+   
     </>
   );
 };
