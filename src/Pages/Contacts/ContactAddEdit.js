@@ -86,7 +86,6 @@ class ContactAddEditModal extends React.Component {
   };
 
   componentDidMount = () => {
-
     this.stepper = new Stepper(document.querySelector("#stepper1"), {
       linear: false,
       animation: true,
@@ -478,10 +477,11 @@ class ContactAddEditModal extends React.Component {
   handleSubmit1 = (event) => {
     const form = event.currentTarget;
 
+    event.preventDefault();
     if (form.checkValidity() === false) {
-      this.setState({ moveNext: false });
       event.preventDefault();
       event.stopPropagation();
+      this.setState({ moveNext: false });
     } else {
       this.stepper.next();
       this.setState({ moveNext: true });

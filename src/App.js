@@ -18,8 +18,6 @@ function App() {
     <Router>
     <Routes>
     <Route path="/" element={<Navigate to ="/contacts" />}/>
-
-
           <Route exact path="/contacts" element={<ContactPage />} />
           <Route exact path="/contactdetails/:id" element={<ContactPage />} />
   

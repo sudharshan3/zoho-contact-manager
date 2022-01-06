@@ -16,7 +16,7 @@ class ContactDelete extends React.Component {
             await fetch('/api/contacts/delete/'+this.props.data.contact_id,{method:'DELETE'})
             this.toggleModal()
             this.props.setVisible(false)
-       window.location.href='/contacts'
+       window.location.href='/'
           // if(this.props.contactListData.contacts.length>0){
            
           //   this.props.setData(this.props.contactListData.contacts[0]);
